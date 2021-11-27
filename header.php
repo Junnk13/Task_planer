@@ -16,9 +16,11 @@ session_start();
         <ul>
             <li><a href="index.php">Главная</a></li>
             <?php
-            if (isset($_SESSION['login'])) {
-                echo '<li><a href="tasks.php">Задачи</a></li>';
-            } ?>
+            if (isset($_SESSION['login'])):?>
+                <li><a href="tasks.php">Задачи</a></li>
+            <?php
+            endif;
+            ?>
             <li><a href="lk.php">Личный кабинет</a></li>
         </ul>
 

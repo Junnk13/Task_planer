@@ -8,10 +8,14 @@ $sesLog = $_SESSION['login'];
 
 $result = $mysql->query("SELECT * FROM `task` WHERE `user_login`='$sesLog'");
 
-while ($row = $result->fetch_assoc()) {
+while ($row = $result->fetch_assoc())
+    :?>
+    <li class="border"><?= $row['tasks'] ?><a href="/delete.php?id=<?= $row['id'] ?>">
+            <button>Удалить</a></button></li>
+<?php
 
-    echo '<li class="border">' . $row['tasks'] . '<a href="/delete.php?id=' . $row['id'] . '"><button>Удалить</a></button></li>';
-}
+endwhile;
+
 $mysql->close();
 
 require "footer.html";
