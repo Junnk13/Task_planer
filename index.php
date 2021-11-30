@@ -7,7 +7,7 @@ require 'header.php';
 <div class="container">
     <h1>Список дел</h1>
     <form action="add.php" method="post">
-        <label><input type="text" name="task_name" id="task" placeholder="Что нужно сделать"></label>
+        <label><input type="text" name="task_name" id="input" placeholder="Что нужно сделать"></label>
         <?php if (empty($_SESSION['login'])){
         ?>
         <button type="submit" name="send_task" disabled>Оформить</button>
