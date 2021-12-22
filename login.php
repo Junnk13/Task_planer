@@ -3,13 +3,15 @@ session_start();
 require 'DBconnection.php';
 
 if (isset($_POST['login'])) {
-    $login = $mysql->real_escape_string($_POST['login']);
+    $login =htmlspecialchars($_POST['login']);
+    $login = $mysql->real_escape_string($login);
     if ($login == '') {
         unset($login);
     }
 }
 if (isset($_POST['password'])) {
-    $password = $mysql->real_escape_string($_POST['password']);
+    $password=htmlspecialchars($_POST['password']);
+    $password = $mysql->real_escape_string($password);
     if ($password == '') {
         unset($password);
     }

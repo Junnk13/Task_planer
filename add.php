@@ -9,14 +9,15 @@ if (empty($_SESSION['login'])) {
 }
 
 if (isset($_POST['send_task'])) {
-    $task = $mysql->real_escape_string($_POST['task_name']);
+    $task = $_POST['task_name'];
     $userId = $_SESSION['login'];
     if ($task == '') {
         header("location:../index.php?error=empty");
         exit();
     }
-
-    $mysql->query("INSERT INTO task(`user_login`,`tasks`) VALUES ('$userId','$task' )");
+    $task = htmlspecialchars($task);
+    $query = sprintf("INSERT INTO task(`user_login`,`tasks`) VALUES ('%s','%s' )", $userId, $mysql->real_escape_string($task));
+    $result = $mysql->query($query);
     $mysql->close();
     header("location:../tasks.php");
 }
