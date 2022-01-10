@@ -6,7 +6,12 @@ require "classes/dbConn.php";
 require "classes/taskClass.php";
 
 $sesLog = $_SESSION['login'];
-$tasks= new Tasks;
-$tasks->getTask($sesLog);
-
+$tasks = new Tasks;
+?>
+    <div id="tasks">
+        <?php
+        $tasks->getTask($sesLog);
+        ?>
+    </div>
+<?php
 require "inc/footer.html";

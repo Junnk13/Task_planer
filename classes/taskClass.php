@@ -13,9 +13,9 @@ class Tasks extends DbConn
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         while ($task = $stmt->fetch()) {
             ?>
-            <li class="border"><?= $task['tasks'] ?><a href="/delete.php?id=<?= $task['id'] ?>">
-                    <button>Удалить
-                </a></button></li>
+            <li class="border"><?= $task['tasks'] ?>
+                <button onclick="deleteTask(<?= $task['id'] ?>)">Удалить</button>
+            </li>
             <?php
         }
         $stmt = null;

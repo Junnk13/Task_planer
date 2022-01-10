@@ -1,8 +1,8 @@
 function addTask() {
     var taskValue = $('#input').val();
-    //console.log(taskValue);
-    if (taskValue === '') {
-        alert("Введите что нужно сделать")
+    if (!taskValue.trim()) {
+        alert("Введите что нужно сделать");
+        $('#input').val('');
     } else {
         $.ajax({
             method: "POST",
@@ -11,9 +11,7 @@ function addTask() {
                 task_name: taskValue
             },
             success: function (data) {
-                setTimeout(function () {
-                    $('#input').val('');
-                }, 300)
+                $('#input').val('');
                 alert('Задача добавлена');
             }
         });
@@ -21,8 +19,24 @@ function addTask() {
 }
 
 function logInPls() {
-    setTimeout(function () {
-        $('#input').val('');
-    }, 300);
+    $('#input').val('');
     alert("Зарегестрируйтесь или войдите на сайт ");
+}
+
+var idValue;
+
+function deleteTask(id) {
+    idValue = id;
+    if (confirm("Удалить задачу ?")) {
+        $.ajax({
+            method: "POST",
+            url: "delete.php",
+            data: {
+                id: idValue
+            },
+            success: function (data) {
+                $("#tasks").load('../tasks.php #tasks')
+            }
+        });
+    }
 }
