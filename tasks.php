@@ -1,21 +1,12 @@
 <?php
 session_start();
 $title = 'Задачи';
-require "header.php";
-require "DBconnection.php";
+require "inc/header.php";
+require "classes/dbConn.php";
+require "classes/taskClass.php";
 
 $sesLog = $_SESSION['login'];
+$tasks= new Tasks;
+$tasks->getTask($sesLog);
 
-$result = $mysql->query("SELECT * FROM `task` WHERE `user_login`='$sesLog'");
-
-while ($row = $result->fetch_assoc())
-    :?>
-    <li class="border"><?= $row['tasks'] ?><a href="/delete.php?id=<?= $row['id'] ?>">
-            <button>Удалить</a></button></li>
-<?php
-
-endwhile;
-
-$mysql->close();
-
-require "footer.html";
+require "inc/footer.html";

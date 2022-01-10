@@ -1,23 +1,20 @@
 <?php
 $title = 'Список дел';
-require 'header.php';
+require "inc/header.php";
 ?>
-
-    <body>
 <div class="container">
     <h1>Список дел</h1>
-    <form action="add.php" method="post">
+    <div class="form">
         <label><input type="text" name="task_name" id="input" placeholder="Что нужно сделать"></label>
         <?php if (empty($_SESSION['login'])){
         ?>
-        <button type="submit" name="send_task" disabled>Оформить</button>
-    </form>
+        <button onclick="logInPls()">Оформить</button>
+    </div>
     <?php
     } else {
         ?>
-        <button type="submit" name="send_task">Оформить</button>
-        </form>
-
+        <button onclick="addTask()">Оформить</button>
+    </div>
         <?php
     }
     if (empty($_SESSION['login']))
@@ -30,11 +27,9 @@ require 'header.php';
             :?>
             <p>Введите что нужно сделать</p>
         <?php
-
         endif;
     }
     ?>
 </div>
-
 <?php
-require "footer.html";
+require "inc/footer.html";

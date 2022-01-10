@@ -1,10 +1,9 @@
 <?php
-require "DBconnection.php";
+require "classes/dbConn.php";
+require "classes/deleteClass.php";
 
-$id =(int) $_GET['id'];
-
-$mysql->query("DELETE FROM `task` WHERE `id`='$id'");
-
-$mysql->close();
+$id =(int)$_GET['id'];
+$delete=new Delete;
+$delete->deleteTask($id);
 
 header('location: /tasks.php');
