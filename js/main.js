@@ -1,5 +1,5 @@
 function addTask() {
-    var taskValue = $('#input').val();
+    let taskValue = $('#input').val();
     if (!taskValue.trim()) {
         alert("Введите что нужно сделать");
         $('#input').val('');
@@ -23,7 +23,7 @@ function logInPls() {
     alert("Зарегестрируйтесь или войдите на сайт ");
 }
 
-var idValue;
+let idValue;
 
 function deleteTask(id) {
     idValue = id;
